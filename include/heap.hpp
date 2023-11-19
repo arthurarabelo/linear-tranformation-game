@@ -11,6 +11,7 @@ class Heap{
         Matrix build(int p, int l, int r);
         Matrix query(int a, int b, int p, int l, int r);
         Matrix MultiplyMatrices(Matrix m1, Matrix m2);
+        void UpdateMatrix(int inst, Matrix newM);
         ~Heap();
     private:
         int max;

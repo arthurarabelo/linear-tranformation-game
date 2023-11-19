@@ -7,7 +7,6 @@ Heap::Heap(int n) : max(n){
 Heap::~Heap() {
     free(instants);
     free(seg);
-    max = 0;
 }
 
 Matrix Heap::MultiplyMatrices(Matrix m1, Matrix m2) {
@@ -26,5 +25,9 @@ Matrix Heap::query(int a, int b, int p, int l, int r) {
     if(a <= l && b >= r) return seg[p].m;
     int x = (l+r)/2;
     return MultiplyMatrices(query(a, b, 2*p, l, x), query(a, b, 2*p+1, x+1, r));
+}
+
+void Heap::UpdateMatrix(int inst, Matrix newM) {
+    instants[inst].m = newM;
 }
 
