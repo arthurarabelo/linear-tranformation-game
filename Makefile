@@ -4,8 +4,8 @@ SRC = src
 OBJ = obj
 INC = include
 BIN = bin
-OBJS = $(OBJ)/main.o $(OBJ)/matrix.o $(OBJ)/node.o $(OBJ)/heap.o
-HDRS = $(INC)/matrix.hpp $(INC)/node.hpp $(INC)/heap.hpp
+OBJS = $(OBJ)/main.o $(OBJ)/matrix.o $(OBJ)/node.o $(OBJ)/segTree.o
+HDRS = $(INC)/matrix.hpp $(INC)/node.hpp $(INC)/segTree.hpp
 CFLAGS = -g -Wall -c -I $(INC)
 
 EXE = $(BIN)/tp3.out
@@ -24,7 +24,7 @@ $(OBJ)/matrix.o: $(HDRS) $(SRC)/matrix.cpp
 $(OBJ)/node.o: $(HDRS) $(SRC)/node.cpp
 	$(CC) $(CFLAGS) -o $(OBJ)/node.o $(SRC)/node.cpp
 
-$(OBJ)/heap.o: $(HDRS) $(SRC)/heap.cpp
-	$(CC) $(CFLAGS) -o $(OBJ)/heap.o $(SRC)/heap.cpp
+$(OBJ)/segTree.o: $(HDRS) $(SRC)/segTree.cpp
+	$(CC) $(CFLAGS) -o $(OBJ)/segTree.o $(SRC)/segTree.cpp
 clean:
 	rm -f $(EXE) $(OBJS) gmon.out

@@ -1,4 +1,4 @@
-#include "heap.hpp"
+#include "segTree.hpp"
 Heap::Heap(int n) : max(n){
     instants = (Node *) malloc(max*sizeof (Node));
     seg = (Node *) calloc(max*4, sizeof (Node));

@@ -1,5 +1,5 @@
-#ifndef HEAP_HPP
-#define HEAP_HPP
+#ifndef SEG_TREE_HPP
+#define SEG_TREE_HPP
 #include <iostream>
 #include "node.hpp"
 
