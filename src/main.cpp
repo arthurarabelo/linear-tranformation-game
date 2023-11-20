@@ -36,7 +36,7 @@ int main(){
             initial_point.x = x;
             initial_point.y = y;
             queryMatrix = segHeap.query(tB, tD, 1, 0, numInst-1);
-            result = queryMatrix.MultiplyPoint(initial_point);
+            result = queryMatrix.LinearTransformation(initial_point);
 
             str_x = to_string(result.x);
             str_y = to_string(result.y);

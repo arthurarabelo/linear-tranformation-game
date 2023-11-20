@@ -36,14 +36,10 @@ Matrix Matrix::Multiply(Matrix m1) {
     return temp;
 }
 
-Point Matrix::MultiplyPoint(Point point) {
+Point Matrix::LinearTransformation(Point point) {
     Point result;
-    for(int i = 0; i < this->cols_; i++){
-        result.x += this->p[0][i] * point.x;
-    }
-    for(int j = 0; j < this->cols_; j++){
-        result.y += this->p[1][j] * point.y;
-    }
+    result.x = (this->p[0][0] * point.x) + (this->p[0][1] * point.y);
+    result.y = (this->p[1][0] * point.x) + (this->p[1][1] * point.y);
     return result;
 }
 

@@ -12,7 +12,7 @@ class Matrix{
     public:
         Matrix(int, int);
         Matrix Multiply(Matrix m1);
-        Point MultiplyPoint(Point p);
+        Point LinearTransformation(Point p);
         ~Matrix();
         void SetAsNull();
         friend std::ostream& operator<<(std::ostream&, const Matrix&);
