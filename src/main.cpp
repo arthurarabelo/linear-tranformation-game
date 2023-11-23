@@ -28,21 +28,20 @@ int main(){
             i++;
             cin >> tB;
             cin >> tD;
-//            cin >> x;
-//            cin >> y;
-//            p.x = x;
-//            p.y = y;
-            cout << *segHeap.query(tB, tD, 1, 0, numInst-1) << endl;
-//            segHeap.query(tB, tD, 1, 0, numInst-1)->LinearTransformation(p);
+            cin >> x;
+            cin >> y;
+            p.x = x;
+            p.y = y;
+            segHeap.query(tB, tD, 1, 0, numInst-1)->LinearTransformation(p);
 
-//            str_x = to_string(p.x);
-//            str_y = to_string(p.y);
-//
-//            if (str_x.length() > 8) Last8Digits(str_x);
-//
-//            if (str_y.length() > 8) Last8Digits(str_y);
-//
-//            cout << str_x << " " << str_y << endl;
+            str_x = to_string(p.x);
+            str_y = to_string(p.y);
+
+            if (str_x.length() > 8) Last8Digits(str_x);
+
+            if (str_y.length() > 8) Last8Digits(str_y);
+
+            cout << str_x << " " << str_y << endl;
         }
         if(op == 'u'){
             i++;
