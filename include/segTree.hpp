@@ -5,18 +5,19 @@
 
 using namespace std;
 
-class Heap{
+class SegTree{
     public:
-        Heap(int n);
-        Matrix build(int p, int l, int r);
-        Matrix query(int a, int b, int p, int l, int r);
-        Matrix MultiplyMatrices(Matrix m1, Matrix m2);
-        void UpdateMatrix(int inst, Matrix newM);
-        ~Heap();
+        SegTree(int n);
+//        Matrix* build(int p, int l, int r);
+        Matrix* query(int a, int b, int p, int l, int r);
+        Matrix* MultiplyMatrices(Matrix *m1, Matrix *m2);
+        Matrix* UpdateMatrix(int i, Matrix *newM, int p, int l, int r);
+        ~SegTree();
     private:
         int max;
-        Node* instants;
         Node* seg;
+        Matrix queryMatrix;
+        Matrix id;
 };
 
 #endif

@@ -1,33 +1,53 @@
 #include "segTree.hpp"
-Heap::Heap(int n) : max(n){
-    instants = (Node *) malloc(max*sizeof (Node));
-    seg = (Node *) calloc(max*4, sizeof (Node));
+
+SegTree::SegTree(int n) : max(n), queryMatrix(2, 2), id(2, 2) {
+    seg = new Node[4 * max * sizeof(Node)];
 }
 
-Heap::~Heap() {
-    free(instants);
-    free(seg);
+SegTree::~SegTree() {
+    delete[] seg;
 }
 
-Matrix Heap::MultiplyMatrices(Matrix m1, Matrix m2) {
-    return m1.Multiply(m2);
+Matrix* SegTree::MultiplyMatrices(Matrix *m1, Matrix *m2) {
+    return m1->Multiply(*m2);
 }
 
-Matrix Heap::build(int p, int l, int r) {
-    if(l == r) return seg[p].m = instants[l].m;
-    int x = (l+r)/2;
-    return seg[p].m = MultiplyMatrices(build(2*p, l, x), build(2*p+1, x+1, r));
+//Matrix* SegTree::build(int p, int l, int r) {
+//    if (l == r) return &id;
+//    int x = (l + r) / 2;
+//    return seg[p].m = MultiplyMatrices(build(2 * p, l, x), build(2 * p + 1, x + 1, r));
+//}
+
+Matrix* SegTree::query(int a, int b, int p, int l, int r) {
+    if (b < l || a > r) {
+        return &id;
+    }
+    if (a <= l && b >= r) {
+        if (!seg[p].m_updated) return &id;
+        return seg[p].m;
+    }
+    int x = (l + r) / 2;
+    delete seg[p].m;
+    return seg[p].m = MultiplyMatrices(query(a, b, 2 * p, l, x), query(a, b, 2 * p + 1, x + 1, r));
 }
 
-Matrix Heap::query(int a, int b, int p, int l, int r) {
-    Matrix id(2, 2);
-    if(b < l || a > r) return id;
-    if(a <= l && b >= r) return seg[p].m;
-    int x = (l+r)/2;
-    return MultiplyMatrices(query(a, b, 2*p, l, x), query(a, b, 2*p+1, x+1, r));
-}
-
-void Heap::UpdateMatrix(int inst, Matrix newM) {
-    instants[inst].m = newM;
+Matrix* SegTree::UpdateMatrix(int i, Matrix *newM, int p, int l, int r) {
+    if (i < l || r < i) {
+        if (!seg[p].m_updated) return &id;
+        return seg[p].m;
+    }
+    if (l == r) {
+        if(seg[p].m_updated){
+            delete seg[p].m;
+        }
+        seg[p].m_updated = true;
+        seg[p].m = newM;
+        return seg[p].m;
+    }
+    int m = (l + r) / 2;
+    delete seg[p].m;
+    seg[p].m_updated = true;
+    return seg[p].m = (MultiplyMatrices(UpdateMatrix(i, newM, 2 * p, l, m),
+                                           UpdateMatrix(i, newM, 2 * p + 1, m + 1, r)));
 }
 

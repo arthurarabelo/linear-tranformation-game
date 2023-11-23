@@ -11,47 +11,45 @@ int main(){
     int numInst, inst, numOps;
     int tB, tD;
     long unsigned int x, y;
-    Matrix newMatrix(2, 2);
-    Matrix queryMatrix(2, 2);
-    Point initial_point;
-    Point result;
+    Point p;
     char op;
 
     cin >> numInst;
     cin >> numOps;
 
-    Heap segHeap(numInst);
-    segHeap.build(1, 0, numInst-1);
+    SegTree segHeap(numInst);
 
     int i = 0;
     string str_x;
     string str_y;
-    while(i <= numOps){
+    while(i < numOps){
         cin >> op;
         if(op == 'q'){
+            i++;
             cin >> tB;
             cin >> tD;
-            cin >> x;
-            cin >> y;
-            initial_point.x = x;
-            initial_point.y = y;
-            queryMatrix = segHeap.query(tB, tD, 1, 0, numInst-1);
-            result = queryMatrix.LinearTransformation(initial_point);
+//            cin >> x;
+//            cin >> y;
+//            p.x = x;
+//            p.y = y;
+            cout << *segHeap.query(tB, tD, 1, 0, numInst-1) << endl;
+//            segHeap.query(tB, tD, 1, 0, numInst-1)->LinearTransformation(p);
 
-            str_x = to_string(result.x);
-            str_y = to_string(result.y);
-
-            if (str_x.length() > 8) Last8Digits(str_x);
-
-            if (str_y.length() > 8) Last8Digits(str_y);
-
-            cout << str_x << " " << str_y << endl;
+//            str_x = to_string(p.x);
+//            str_y = to_string(p.y);
+//
+//            if (str_x.length() > 8) Last8Digits(str_x);
+//
+//            if (str_y.length() > 8) Last8Digits(str_y);
+//
+//            cout << str_x << " " << str_y << endl;
         }
         if(op == 'u'){
+            i++;
+            auto* newMatrix = new Matrix(2,2);
             cin >> inst;
-            cin >> newMatrix;
-            segHeap.UpdateMatrix(inst, newMatrix);
+            cin >> *newMatrix;
+            segHeap.UpdateMatrix(inst, newMatrix, 1, 0, numInst-1);
         }
-        i++;
     }
 }

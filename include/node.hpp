@@ -8,10 +8,12 @@ using namespace std;
 class Node{
     public:
         Node();
+        ~Node();
     private:
-        Matrix  m;
+        Matrix*  m;
+        bool m_updated{};
 
-    friend class Heap;
+    friend class SegTree;
 };
 
 #endif
