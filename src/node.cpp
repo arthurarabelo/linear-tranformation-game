@@ -1,10 +1,5 @@
 #include "node.hpp"
 
-Node::Node() {
-    m = nullptr;
+Node::Node(): m(2,2) {
     m_updated = false;
-}
-
-Node::~Node() {
-    delete m;
 }

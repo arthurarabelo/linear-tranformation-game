@@ -11,13 +11,13 @@ int main(){
     int numInst, inst, numOps;
     int tB, tD;
     long unsigned int x, y;
-    Point p;
     char op;
 
     cin >> numInst;
     cin >> numOps;
 
     SegTree segHeap(numInst);
+    segHeap.build(1, 0, numInst);
 
     int i = 0;
     string str_x;
@@ -30,9 +30,10 @@ int main(){
             cin >> tD;
             cin >> x;
             cin >> y;
+            Point p;
             p.x = x;
             p.y = y;
-            segHeap.query(tB, tD, 1, 0, numInst-1)->LinearTransformation(p);
+            segHeap.query(tB, tD, 1, 0, numInst-1).LinearTransformation(p);
 
             str_x = to_string(p.x);
             str_y = to_string(p.y);
@@ -45,9 +46,9 @@ int main(){
         }
         if(op == 'u'){
             i++;
-            auto* newMatrix = new Matrix(2,2);
+            Matrix newMatrix(2,2);
             cin >> inst;
-            cin >> *newMatrix;
+            cin >> newMatrix;
             segHeap.UpdateMatrix(inst, newMatrix, 1, 0, numInst-1);
         }
     }

@@ -11,8 +11,8 @@ typedef struct point_t{
 class Matrix{
     public:
         Matrix(int, int);
-        Matrix* Multiply(Matrix& m1);
-        Point LinearTransformation(Point &p);
+        Matrix Multiply(const Matrix &m1, const Matrix &m2);
+        void LinearTransformation(Point &p);
         ~Matrix();
         void SetAsNull();
         friend std::ostream& operator<<(std::ostream&, const Matrix&);
@@ -22,7 +22,7 @@ class Matrix{
     private:
         int rows_;
         int cols_;
-        long unsigned int **p{};
+        long unsigned int p[2][2];
 
     friend class Node;
 };
