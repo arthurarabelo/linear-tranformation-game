@@ -10,7 +10,7 @@ class Node{
         Node();
     private:
         Matrix  m;
-        bool m_updated;
+        bool m_updated; //flag que sinaliza se a matriz do nó foi atualizada ou continua como identidade
 
     friend class SegTree;
 };

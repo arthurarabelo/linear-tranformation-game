@@ -1,5 +1,6 @@
 #include "matrix.hpp"
 
+//construtor: inicializa a matriz como identidade
 Matrix::Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
     for(int i = 0; i < rows_; i++){
         for(int j = 0; j < cols_; j++){
@@ -12,8 +13,10 @@ Matrix::Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
     }
 }
 
+//destrutor: como não há memória alocada para a matriz, não é preciso dar nenhum free ou delete
 Matrix::~Matrix()= default;
 
+//multiplicação: cria matriz resultado, a transforma em nula e, feito os cálculos, a retorna
 Matrix Matrix::Multiply(const Matrix &m1, const Matrix &m2) {
     unsigned long int x = 100000000;
     Matrix c(2,2);
@@ -23,12 +26,13 @@ Matrix Matrix::Multiply(const Matrix &m1, const Matrix &m2) {
             for (int k = 0; k < cols_; ++k) {
                 c.p[i][j] += m1.p[i][k] * m2.p[k][j];
             }
-        c.p[i][j] = c.p[i][j] % x;
+        c.p[i][j] = c.p[i][j] % x; //coloca na matriz resultado apenas os últimos 8 dígitos caso o número tenha mais algarismos que 8
         }
     }
     return c;
 }
 
+//transformação linear:o parâmetro ponto é passado como referência e muda seus valores
 void Matrix::LinearTransformation(Point &point) {
     unsigned long int x = point.x;
     unsigned long int y = point.y;
@@ -36,6 +40,7 @@ void Matrix::LinearTransformation(Point &point) {
     point.y = (this->p[1][0] * x) + (this->p[1][1] * y);
 }
 
+//sobrecarga do operador >> para a leitura da matriz
 istream& operator>>(istream& is, Matrix& m) {
     for (int i = 0; i < m.rows_; ++i) {
         for (int j = 0; j < m.cols_; ++j) {
@@ -45,6 +50,7 @@ istream& operator>>(istream& is, Matrix& m) {
     return is;
 }
 
+//sobrecarga do operador << para imprimir a matriz
 ostream& operator<<(ostream& os, const Matrix& m) {
     for (int i = 0; i < m.rows_; ++i) {
         os << m.p[i][0];
@@ -56,6 +62,7 @@ ostream& operator<<(ostream& os, const Matrix& m) {
     return os;
 }
 
+//função que atribui a todos os elementos da matriz o número 0: utilizada na multiplicação
 void Matrix::SetAsNull() {
     for(int i = 0; i < this->rows_; i++){
         for(int j = 0; j < this->cols_; j++){
@@ -64,6 +71,7 @@ void Matrix::SetAsNull() {
     }
 }
 
+//sobrecarga do operador =
 Matrix& Matrix::operator=(const Matrix &m) {
     for (int i = 0; i < rows_; ++i) {
         for (int j = 0; j < cols_; ++j) {
