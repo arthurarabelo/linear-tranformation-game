@@ -1,0 +1,5 @@
+bin/tp3.out
+obj/main.o
+obj/matrix.o
+obj/node.o
+obj/segTree.o

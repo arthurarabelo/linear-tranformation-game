@@ -1,4 +1,4 @@
-#include <iostream>
+#include <iostream> 
 #include "segTree.hpp"
 #include <string>
 using namespace std;

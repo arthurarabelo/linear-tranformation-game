@@ -1,4 +1,4 @@
-#ifndef TP3_NODE_HPP
+#ifndef TP3_NODE_HPP 
 #define TP3_NODE_HPP
 #include <iostream>
 #include "matrix.hpp"

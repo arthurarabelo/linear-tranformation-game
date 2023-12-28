@@ -1,4 +1,4 @@
-#ifndef MATRIX_HPP
+#ifndef MATRIX_HPP 
 #define MATRIX_HPP
 #include <iostream>
 

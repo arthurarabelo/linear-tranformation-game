@@ -1,4 +1,4 @@
-#include "matrix.hpp"
+#include "matrix.hpp" 
 
 //construtor: inicializa a matriz como identidade
 Matrix::Matrix(int rows, int cols) : rows_(rows), cols_(cols) {

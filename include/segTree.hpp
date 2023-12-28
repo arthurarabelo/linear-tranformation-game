@@ -1,4 +1,4 @@
-#ifndef SEG_TREE_HPP
+#ifndef SEG_TREE_HPP 
 #define SEG_TREE_HPP
 #include <iostream>
 #include "node.hpp"

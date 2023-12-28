@@ -1,4 +1,4 @@
-#include "segTree.hpp"
+#include "segTree.hpp" 
 
 //construtor: aloca o vetor que representa a árvore de segmentação
 SegTree::SegTree(int n) : max(n), id(2,2){
